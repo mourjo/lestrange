@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class HelloClassLoader extends ClassLoader {
+public class SimpleClassLoader extends ClassLoader {
 	private final byte[] bytecode;
 
 	@Override
@@ -12,7 +12,7 @@ public class HelloClassLoader extends ClassLoader {
 		return defineClass(name, bytecode, 0, bytecode.length);
 	}
 
-	public HelloClassLoader(InputStream inputStream) {
+	public SimpleClassLoader(InputStream inputStream) {
 		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
 		int nextValue = 0;
 		try {

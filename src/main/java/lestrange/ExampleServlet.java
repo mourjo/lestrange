@@ -26,7 +26,7 @@ public class ExampleServlet extends HttpServlet {
 			String m = req.getParameter("methodname");
 
 			InputStream x = req.getPart("file").getInputStream();
-			HelloClassLoader hc = new HelloClassLoader(x);
+			SimpleClassLoader hc = new SimpleClassLoader(x);
 			Class<?> ccc = hc.loadClass(cl);
 			
 			Object result = null;
