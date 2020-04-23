@@ -9,7 +9,7 @@ public class Main {
 		Server server = new Server(8080);
 		ServletContextHandler handler = new ServletContextHandler(server, "/loadclass");
 
-		handler.addServlet(ExampleServlet.class, "/").getRegistration()
+		handler.addServlet(LoaderServlet.class, "/").getRegistration()
 				.setMultipartConfig(new MultipartConfigElement(""));
 
 		server.start();
