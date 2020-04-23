@@ -1,6 +1,8 @@
 # lestrange
 
-A playground for dark magic with Java class loaders. This is a work in progress. Currently uses reflection to invoke methods. This library is an attempt to understand how dynamic class loaders work and how in languages like Clojure, code is evaluated over a network connection.
+A playground for dark magic with Java class loaders. This is a work in progress. Currently uses reflection to invoke methods. 
+
+This library is an attempt to understand how dynamic class loaders work and how in languages like Clojure, code is evaluated.
 
 ![Bellatrix](/utils/bella.png)
 
