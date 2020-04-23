@@ -20,7 +20,7 @@ curl -XPOST "localhost:8080/loadclass/?classname=SystemInfo&methodname=info" -F 
 curl -XPOST "localhost:8080/loadclass/?classname=RandomNumber&methodname=sayHello" -F "file=@RandomNumber.class"
 ```
 
-# Gerating class files
+# Generating class files
 Ensure that clases are public and the method being accessed is public.
 ```bash
 cd utils
