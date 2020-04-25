@@ -1,8 +1,15 @@
 # lestrange
 
-A playground for dark magic with Java class loaders. This is a work in progress. Currently uses reflection to invoke methods.
+A playground for dark magic with Java class loaders. This is a work in
+progress. There are two implmentations to call methods on dynamically
+loaded classes currently:
+- Using reflection to call a method by name on a class file  passed in
+  an multi-part HTTP POST request
+- Using the interface `Callable` and invoking the `call` method on the
+  object created from the class file passed
 
-This library is an attempt to understand how dynamic class loaders work and how in languages like Clojure, code is evaluated.
+This library is an attempt to understand how dynamic class loaders
+work and how in languages like Clojure, code is evaluated.
 
 ![Bellatrix](/utils/bella.png)
 
@@ -14,10 +21,23 @@ Start the server with:
 mvn clean install exec:java
 ```
 
-Send a class file to be executed:
+Send a class file to be executed via reflection:
 ```bash
 curl -XPOST "localhost:8080/loadclass/?classname=SystemInfo&methodname=info" -F "file=@SystemInfo.class"
 curl -XPOST "localhost:8080/loadclass/?classname=RandomNumber&methodname=sayHello" -F "file=@RandomNumber.class"
+```
+
+To run the `call` method on a `Callable` class:
+```bash
+curl -XPOST "localhost:8080/callable/?classname=CallableAPI" -F "file=@CallableAPI.class"
+  _              _
+ | |            | |
+ | |     ___ ___| |_ _ __ __ _ _ __   __ _  ___
+ | |    / _ \ __| __| '__/ _` | '_ \ / _` |/ _ \
+ | |____  __\__ \ |_| | | (_| | | | | (_| |  __/
+ |______\___|___/\__|_|  \__,_|_| |_|\__, |\___|
+                                      __/ |
+                                     |___/
 ```
 
 # Generating class files
@@ -27,6 +47,7 @@ cd utils
 javac RandomNumber.java
 javac HelloClass.java
 javac SystemInfo.java
+javac CallableAPI.java
 ```
 
 # Notes
@@ -55,6 +76,7 @@ while true;
       curl -XPOST "localhost:8080/loadclass/?classname=SystemInfo&methodname=info" -F "file=@SystemInfo.class";
       curl -XPOST "localhost:8080/loadclass/?classname=HelloClass&methodname=sayHello" -F "file=@HelloClass.class";
       curl -XPOST "localhost:8080/loadclass/?classname=RandomNumber&methodname=sayHello" -F "file=@RandomNumber.class";
+      curl -XPOST "localhost:8080/callable/?classname=CallableAPI" -F "file=@CallableAPI.class";
   done
 ```
 
